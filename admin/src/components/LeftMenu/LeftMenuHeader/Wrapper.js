@@ -17,8 +17,7 @@ const Wrapper = styled.div`
       background-position: center center;
       background-size: 12rem;
     }
-  }
-  `
+  `}
 `;
 
 export default Wrapper;
