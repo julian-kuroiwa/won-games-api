@@ -1,19 +1,12 @@
-/**
- *
- * LeftMenuFooter
- *
- */
-
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
-import { PropTypes } from 'prop-types';
 
 import Wrapper from './Wrapper';
 import messages from './messages.json';
 
 defineMessages(messages);
 
-function LeftMenuFooter({ version }) {
+function LeftMenuFooter() {
   return (
     <Wrapper>
       <div className="poweredBy">
@@ -22,25 +15,12 @@ function LeftMenuFooter({ version }) {
           defaultMessage={messages.poweredBy.defaultMessage}
           key="poweredBy"
         />
-        <a key="website" href="https://strapi.io" target="_blank" rel="noopener noreferrer">
-          Strapi
-        </a>
-        &nbsp;
-        <a
-          href={`https://github.com/strapi/strapi/releases/tag/v${version}`}
-          key="github"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          v{version}
+        <a key="website" href="https://reactavancado.com.br" target="_blank" rel="noopener noreferrer">
+          React Avançado
         </a>
       </div>
     </Wrapper>
   );
 }
-
-LeftMenuFooter.propTypes = {
-  version: PropTypes.string.isRequired,
-};
 
 export default LeftMenuFooter;
