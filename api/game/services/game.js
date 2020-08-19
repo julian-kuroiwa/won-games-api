@@ -7,6 +7,31 @@
 
 const axios = require("axios");
 
+async function getGameInfo(slug) {
+  const jsdom = require("jsdom");
+
+  const { JSDOM } = jsdom;
+  const body = await axios.get(`https://www.gog.com/${slug}`);
+  const dom = new JSDOM(body.data);
+
+  const description = dom.window.document.querySelector(".description");
+
+  const ratingElement = dom.window.document.querySelector(
+    ".age-restrictions__icon user"
+  );
+
+  return {
+    rating: ratingElement
+      ? ratingElement
+          .getAttribute("xlink:href")
+          .replace(/_/g, "")
+          .replace(/[^\w-]+/g, "")
+      : "Free",
+    short_description: description.textContent.trim().slice(0, 160),
+    description: description.innerHTML,
+  };
+}
+
 module.exports = {
   populate: async (params) => {
     const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&page=1&sort=popularity`;
